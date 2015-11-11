@@ -1,2 +1,0 @@
-# Curso
-Curso de prueba
