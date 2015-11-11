@@ -1,0 +1,50 @@
+extends layout-admin
+block content 
+		#page-wrapper.noticias
+			.row
+				.col-lg-12
+					h1.page-header Gestionar noticias
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-12
+					.panel.panel-default
+						.panel-heading
+							| Noticias
+						// /.panel-heading
+						.panel-body
+							.dataTable_wrapper
+								table#noticias.table.table-striped.table-bordered.table-hover
+									thead
+										tr
+											th Nombre
+											th Noticia
+											th Categoria
+											th Fecha
+											th Etiquetas
+											th Editar
+											th Borrar
+									tbody
+										- each value, index in list
+											- var idNoticia = value['id']
+											- var nombreNoticia = value['nombre']
+											- var noticia = value['descripcion']
+											- if ( noticia.length > 87 ){
+												- var descCortada = noticia.substring(0, 90) + "..."
+											- } else {
+												- var descCortada = noticia
+											- }
+											- var categoria = value['categoria']
+											- var fecha = value['fecha']
+											- var etiquetas = value['etiquetas']
+											tr
+												td #{nombreNoticia}
+												td #{descCortada}
+												td #{categoria}
+												td #{fecha}
+												td #{etiquetas}
+												td 
+													a.btn.btn-warning(href="/admin/edit/#{idNoticia}") Editar
+												td 
+													a.btn.btn-danger.botonBorrar(href="/admin/delete/#{idNoticia}") Borrar
+	

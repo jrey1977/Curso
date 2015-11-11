@@ -1,0 +1,46 @@
+extends layout-admin
+block content 
+		#page-wrapper.nuevaNoticia
+			.row
+				.col-lg-12
+					h1.page-header Nueva noticia
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-12
+						// /.panel-heading
+						.panel.panel-default
+							.panel-heading Rellenar datos
+							.panel-body
+								form#nueva(name="nueva-noticia", method="post", enctype="multipart/form-data")
+									.form-group
+										label Titular
+										input.form-control#titNoticia(placeholder="Pon un titular a la noticia",type="text" name="nombre" value="")
+										input.form-control#urlNoticia(type="hidden" name="url" value="")
+									.form-group
+										label Descripción
+										textarea.form-control(placeholder='Cuerpo de la noticia' name="descripcion" value="")
+									.form-group
+										label Foto
+										input.form-control(type="file", name="imagen")
+									.form-group(data='#{selectCategorias}')
+										label Categoria
+										select.select-categoria(name='categoria')
+											option(value='') Sin categorizar
+											- each value, index in categorias
+													- var nombreCategoria = value['nombre']
+													option(value='#{nombreCategoria}') #{nombreCategoria}
+									.form-group
+										label Etiquetas
+										input.form-control(placeholder='Etiquetas',type="text" name="etiquetas" value="")
+										button#nuevaNoticia.btn.btn-success(type='submit') Publicar
+										button.btn.btn-danger(type='reset') Limpiar
+						.errorMessage.oculto
+							p Los siguientes errores han ocurrido:
+							ul
+						- if (errores.length > 0)
+							.errorMessage
+								p Los siguientes errores han ocurrido:
+								ul  
+									- for (i=0;i<errores.length;i++)
+										li= errores[i]

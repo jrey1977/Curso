@@ -1,0 +1,84 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible',content='IE=edge')
+    meta(name='viewport',content='width=device-width, initial-scale=1')
+    meta(name='description',content='Blog hecho con NodeJS')
+    meta(name='author',content='Javier Rey')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/metisMenu.min.css')
+    link(rel='stylesheet', href='/stylesheets/dataTables.bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/dataTables.responsive.min.css')
+    link(rel='stylesheet', href='/assets/css/admin.min.css')
+    link(rel='stylesheet', href='/fonts/font-awesome.min.css')
+  body
+    #wrapper
+      // Navigation
+      nav.navbar.navbar-default.navbar-static-top(role='navigation')
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/admin') Administración del Blog
+        // /.navbar-header
+        ul.nav.navbar-top-links.navbar-right
+          li
+            a(href='/')
+              i.fa.fa-external-link.fa-fw
+              |  Ir al blog
+          // /.dropdown
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown', href='#')
+              i.fa.fa-user.fa-fw
+              i.fa.fa-caret-down
+            ul.dropdown-menu.dropdown-user
+              li
+                a(href='/admin/salir')
+                  i.fa.fa-sign-out.fa-fw
+                  |  Salir
+            // /.dropdown-user
+          // /.dropdown
+        // /.navbar-top-links
+        .navbar-default.sidebar(role='navigation')
+          .sidebar-nav.navbar-collapse
+            ul#side-menu.nav
+              li.noticias
+                a(href='/admin')
+                  i.fa.fa-list-alt.fa-fw
+                  |  Noticias
+              li.nuevaNoticia
+                a(href='/admin/nueva').sub
+                  i.fa.fa-plus.fa-fw
+                  |  Nueva noticia
+              li.categorias
+                a(href='/admin/categorias')
+                  i.fa.fa-folder.fa-fw
+                  |  Categorias
+              li.nuevaCategoria
+                a(href='/admin/nueva-categoria').sub
+                  i.fa.fa-plus.fa-fw
+                  |  Nueva categoria
+              li.usuarios
+                a(href='/admin/usuarios')
+                  i.fa.fa-users.fa-fw
+                  |  Usuarios
+              li.NuevoUsuario
+                a(href='/admin/crearUsuario').sub
+                  i.fa.fa-plus.fa-fw
+                  |  Nuevo usuario
+              li.comentarios
+                a(href='/admin/comentarios')
+                  i.fa.fa-comments-o.fa-fw
+                  |  Comentarios
+      block content
+    script(src="/javascripts/jquery.min.js")
+    script(src="/javascripts/bootstrap.min.js")
+    script(src="/javascripts/metisMenu.min.js")
+    script(src="/javascripts/jquery.dataTables.min.js")
+    script(src="/javascripts/shCore.js")
+    script(src="/javascripts/dataTables.bootstrap.min.js")
+    script(src="/assets/js/admin.js")

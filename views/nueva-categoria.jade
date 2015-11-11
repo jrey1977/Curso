@@ -1,0 +1,26 @@
+extends layout-admin
+block content 
+		#page-wrapper.nuevaCategoria
+			.row
+				.col-lg-12
+					h1.page-header Nueva categoria
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+						// /.panel-heading
+						.panel.panel-default
+							.panel-heading Rellenar datos
+							.panel-body
+								form#categoria(name="nueva-categoria", method="post")
+									.form-group
+										label Nombre
+										input#titCategoria.form-control(placeholder="Nombre",type="text" name="nombre" value="")
+									.form-group
+										label Url
+										input#urlCategoria.form-control(placeholder='Sin acentos ni espacios en blanco' name="url" value="")
+										button#formCat.btn.btn-success(type='submit') Publicar
+										button.btn.btn-danger(type='reset') Limpiar
+							.errorMessage.oculto
+								p Los siguientes errores han ocurrido:
+								ul 

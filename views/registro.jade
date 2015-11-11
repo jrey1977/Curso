@@ -1,0 +1,27 @@
+extends layout
+block content
+	header.intro-header.registro
+			.container
+					.row
+							.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+									.site-heading
+											h1 Registro
+											hr.small
+											span.subheading Disfruta de las ventajas
+	.container.login
+		h1 Introduce tus datos
+		- if (errores.length > 0)
+			.errorMessage
+				p Los siguientes errores han ocurrido:
+				ul  
+					- for (i=0;i<errores.length;i++)
+						li= errores[i]
+		form(role='form', action="/registro",method="post", id="form-registro")
+			.form-group
+				input.form-control(type='text', name="username",placeholder='Introduce Username')
+			.form-group
+				input.form-control(type='email', name="email",placeholder='Introduce Correo')
+			.form-group
+				input.form-control(type='password', name="password", placeholder='Password')
+			button.btn.btn-success#formReg(type='submit') Enviar
+			a.btn.btn-danger(href="/") Cancelar

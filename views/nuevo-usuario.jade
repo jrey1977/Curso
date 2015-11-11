@@ -1,0 +1,34 @@
+extends layout-admin
+block content 
+		#page-wrapper.NuevoUsuario
+			.row
+				.col-lg-12
+					h1.page-header Nuevo usuario
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+						// /.panel-heading
+						.panel.panel-default
+							.panel-heading Rellenar datos
+							.panel-body
+								form#grabar-usuario(name="nuevo-usuario", method="post")
+									.form-group
+										label Nombre
+										input.form-control(placeholder="Nombre",type="text" name="username" value="")
+									.form-group
+										label Password
+										input.form-control(placeholder="Password",type="text" name="password" value="")
+									.form-group
+										label Administrador
+										select.administrador(name="administrador")
+											option(value="no") No
+											option(value="si") Si
+										button#formUsr.btn.btn-success(type='submit') Crear
+										button.btn.btn-danger(type='reset') Limpiar
+						- if (errores.length > 0)
+							.errorMessage
+								p Los siguientes errores han ocurrido:
+								ul  
+									- for (i=0;i<errores.length;i++)
+										li= errores[i]

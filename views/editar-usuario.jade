@@ -1,0 +1,33 @@
+extends layout-admin
+block content 
+		#page-wrapper.usuarios
+			.row
+				.col-lg-12
+					h1.page-header Editar usuario
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+						// /.panel-heading
+						.panel.panel-default
+							.panel-heading Modifica los campos
+							.panel-body
+								- var nombre= usuario["username"]
+								- var administrador= usuario["administrador"]
+								form#editar-usuario(name="editar-usuario", method="post")
+									.form-group
+										label Nombre
+										input.form-control(placeholder="Nombre",type="text" name="username" value="#{nombre}")
+									.form-group
+										label Administrador
+										- if ( administrador == "si" )
+											select.administrador(name="administrador")
+													option(value="no") No
+													option(value="si",selected="selected") Si
+										- if ( administrador == "no" )
+											select.administrador(name="administrador")
+													option(value="no",selected="selected") No
+													option(value="si") Si
+									.form-group
+										button#formUsr.btn.btn-success(type='submit') Grabar
+										a.btn.btn-danger(href='/admin/usuarios') Cancelar

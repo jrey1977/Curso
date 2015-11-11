@@ -1,0 +1,44 @@
+extends layout-admin
+block content 
+		#page-wrapper.comentarios
+			.row
+				.col-lg-12
+					h1.page-header Gestionar comentarios
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-12
+					.panel.panel-default
+						.panel-heading
+							| Comentarios
+						// /.panel-heading
+						.panel-body
+							.dataTable_wrapper
+								table#comentarios.table.table-striped.table-bordered.table-hover
+									thead
+										tr
+											th.celdaAdministrador Autor
+											th Comentario
+											th Noticia
+											th.celdaAdministrador Fecha
+											th.celdaEditar  Editar
+											th.celdaBorrar  Borrar
+									tbody
+										- each value, index in comentarios
+											- var idComentario = value['id']
+											- var mensaje = value['mensaje']
+											- var urlNoticia = value['url_noticia']
+											- var titularNoticia = value['titular_noticia']
+											- var autor = value['autor']
+											- var fecha = value['fecha']
+											tr
+												td.celdaAdministrador #{autor}
+												td #{mensaje}
+												td 
+													a(href="/noticia/#{urlNoticia}") #{titularNoticia}
+												td.celdaAdministrador #{fecha}
+												td.celdaEditar
+													a.btn.btn-warning(href="/admin/editarComentario/#{idComentario}") Editar
+												td.celdaBorrar
+													a.btn.btn-danger.botonBorrar(href="/admin/borrarComentario/#{idComentario}") Borrar
+	

@@ -1,0 +1,78 @@
+extends layout
+block content                  
+    header.intro-header.post
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    .site-heading.post
+                      - each value, index in laNoticia
+                        - var titular = value['nombre']
+                        h1 #{titular}
+    .container
+        .row
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+            - each value, index in laNoticia
+                - var idNoticia = value['id']
+                - var nombreNoticia = value['nombre']
+                - var noticia = value['descripcion']
+                - var categoria = value['categoria']
+                - var foto = value['foto']
+                - var fecha = value['fecha']
+                - var etiquetas = value['etiquetas']
+                .post-preview
+                    p.post-meta 
+                      span.fecha Publicado el <b>#{fecha}</b> en <b>#{categoria}</b>
+                      span.tags Tags: <b>#{etiquetas}</b>
+                  - if ( foto != ""){
+                      img(src="/images/noticias/#{foto}")
+                      p.post #{noticia}
+                  - } else {
+                      p.post #{noticia}
+                  - }
+                      
+                hr
+        - if ( comentariosNoticia.length > 0 ){
+          .row.comentarios
+              h1 Comentarios
+              - each value, index in comentariosNoticia
+                - var autor = value['autor']
+                - var mensaje = value['mensaje']
+                - var fecha = value['fecha']
+                fieldset.comentario
+                  label Escrito por <b>#{autor}</b> el <b>#{fecha}</b>
+                  div.comentarioNoticia #{mensaje}
+        - }
+          hr
+        - if ( botonIniciaSesion == "invisible" ){
+          .row.comentarios
+              h1 Escribir un comentario
+              form#comentarios(action="/comentarios",role="form",method="post")
+                .form-group
+                  label Mensaje
+                  textarea(name="mensaje",placeholder="Escribe aqui tu mensaje")
+                  input(type="hidden",value="#{urlNoticia}",name="urlNoticia")
+                  input(type="hidden",value="#{titular}",name="titularNoticia")
+                input.btn.btn-success#enviarComentario(type="submit",value="Enviar")
+                input.btn.btn-danger(type="clear",value="Limpiar")
+        - }
+    footer
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    ul.list-inline.text-center
+                        li
+                            a(href='https://twitter.com/javirey_es',target='_blank')
+                                span.fa-stack.fa-lg
+                                    i.fa.fa-circle.fa-stack-2x
+                                    i.fa.fa-twitter.fa-stack-1x.fa-inverse
+                        li
+                            a(href='http://www.facebook.com',target='_blank')
+                                span.fa-stack.fa-lg
+                                    i.fa.fa-circle.fa-stack-2x
+                                    i.fa.fa-facebook.fa-stack-1x.fa-inverse
+                        li
+                            a(href='https://github.com/jrey1977/javirey',target='_blank')
+                                span.fa-stack.fa-lg
+                                    i.fa.fa-circle.fa-stack-2x
+                                    i.fa.fa-github.fa-stack-1x.fa-inverse
+                    p.copyright.text-muted Copyright &copy; Javier Rey 2015

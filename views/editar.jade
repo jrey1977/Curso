@@ -1,0 +1,66 @@
+extends layout-admin
+block content 
+		#page-wrapper.noticias
+			.row
+				.col-lg-12
+					h1.page-header Editar noticia
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+						// /.panel-heading
+						.panel.panel-default
+							.panel-heading Modifica los campos
+							.panel-body
+								- var idNoticia = noticia["id"]  
+								- var nombre= noticia["nombre"]
+								- var descripcion= noticia["descripcion"]
+								- var url = noticia["url"]
+								- var categoriaNoticia= noticia["categoria"]
+								- var fotoNoticia= noticia["foto"]
+								- var etiquetas= noticia["etiquetas"]
+								form#nueva(name="edito-noticia", method="post", data="#{idNoticia}", enctype="multipart/form-data")
+									.form-group
+										label Nombre
+										input.form-control#titNoticia(placeholder="Titular",type="text" name="nombre" value="#{nombre}")
+										input.form-control#urlNoticia(type="hidden" name="url" value="#{url}")
+									.form-group
+										label Descripción
+										textarea.form-control(placeholder='Descripción' name="descripcion" value="") #{descripcion}
+									.form-group
+										input(type="hidden",value="no",name="fotoNueva")
+										input(type="hidden",value="#{fotoNoticia}",name="fotoVieja")
+										label Foto
+										- if ( fotoNoticia != "" && fotoNoticia != null  ){
+											img.imagenNoticia(src="/images/noticias/#{fotoNoticia}")
+											button.btn.btn-danger#borrarFoto Borrar
+											input.form-control.oculto#subirFoto(type="file", name="imagenNueva")
+										- } else {
+											input.form-control#subirFoto(type="file", name="imagenNueva")
+										- }
+									.form-group
+										label Categoria #{categoriaNoticia}
+										select.select-categoria(name='categoria')
+											- if ( ! categoriaNoticia ){
+												option(value='',selected='selected') Sin categorizar
+												- each value, index in categorias
+													- var nombreCategoriaIterada = value['nombre']
+													option(value='#{nombreCategoriaIterada}') #{nombreCategoriaIterada}
+											- } else {
+												option(value='') Sin categorizar
+												- each value, index in categorias
+														- var nombreCategoriaIterada = value['nombre']
+														- if ( categoriaNoticia == nombreCategoriaIterada ){
+																	option(value='#{nombreCategoriaIterada}',selected='selected') #{nombreCategoriaIterada}
+														- } else {
+																	option(value='#{nombreCategoriaIterada}') #{nombreCategoriaIterada}
+														- }
+											- }
+									.form-group
+										label Etiquetas
+										input.form-control(placeholder='Etiquetas',type="text" name="etiquetas" value="#{etiquetas}")
+									button#nuevaNoticia.btn.btn-success(type='submit') Grabar
+									button.btn.btn-danger(type='reset') Limpiar
+						.errorMessage.oculto
+							p Los siguientes errores han ocurrido:
+							ul 

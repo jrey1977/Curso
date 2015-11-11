@@ -1,0 +1,36 @@
+extends layout-admin
+block content 
+		#page-wrapper.categorias
+			.row
+				.col-lg-12
+					h1.page-header Gestionar categorias
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+					.panel.panel-default
+						.panel-heading
+							| Categorias
+						// /.panel-heading
+						.panel-body
+							a.btn.btn-success#crearCategoria(href="/admin/nueva-categoria") Crear categoria
+							.dataTable_wrapper
+								table#categorias.table.table-striped.table-bordered.table-hover
+									thead
+										tr
+											th Nombre
+											th Url
+											th.celdaEditar Editar
+											th.celdaBorrar Borrar
+									tbody
+										- each value, index in categorias
+											- var idCategoria = value['id']
+											- var nombreCategoria = value['nombre']
+											- var urlCategoria = value['url']
+											tr
+												td #{nombreCategoria}
+												td #{urlCategoria}
+												td.celdaEditar 
+													a.btn.btn-warning(href="/admin/editar-categoria/#{idCategoria}") Editar
+												td.celdaBorrar 
+													a.btn.btn-danger.botonBorrar(href="/admin/delete-categoria/#{idCategoria}") Borrar

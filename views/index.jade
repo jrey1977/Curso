@@ -1,0 +1,75 @@
+extends layout
+block content            
+    header.intro-header.home
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    .site-heading
+                        h1 Blog de Noticias
+                        hr.small
+                        span.subheading Un blog de noticias hecho con NodeJS
+
+    .container
+        .row
+            span.bienvenido Bienvenido #{usuario}
+            hr.bienvenido
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+            - each value, index in list
+                - var idNoticia = value['id']
+                - var nombreNoticia = value['nombre']
+                - var urlNoticia = value['url']
+                - var noticia = value['descripcion']
+                - if ( noticia.length > 267 ){
+                  - var descCortada = noticia.substring(0, 270) + "..."
+                - } else {
+                  - var descCortada = noticia
+                - }
+                - var categoria = value['categoria']
+                - var foto = value['foto']
+                - var fecha = value['fecha']
+                - var etiquetas = value['etiquetas']
+                .post-index
+                  .post-preview
+                      a(href='/noticia/#{urlNoticia}')
+                        - if ( foto != ""){
+                            .left-noticia
+                              img.imagenNoticia(src="/images/noticias/#{foto}")
+                            .right-noticia 
+                              h2.img.post-title #{nombreNoticia}
+                              h3.post-subtitle.foto #{descCortada}
+                        - } else {
+                              h2.post-title #{nombreNoticia}
+                              h3.post-subtitle #{descCortada}
+                        - }
+                      ul.pager
+                          li.next
+                              a(href='/noticia/#{urlNoticia}')> Leer noticia &rarr;
+                      p.post-meta 
+                        span.fecha Publicado el <b class="fecha">#{fecha}</b>
+                          - if (categoria != ""){
+                          en en  <b>#{categoria}</b>
+                          - }
+                          - if ( foto != ""){
+                            span.tags Tags: <b>#{etiquetas}</b>
+                          - }
+    footer
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    ul.list-inline.text-center
+                        li
+                            a(href='https://twitter.com/javirey_es',target='_blank')
+                                span.fa-stack.fa-lg
+                                    i.fa.fa-circle.fa-stack-2x
+                                    i.fa.fa-twitter.fa-stack-1x.fa-inverse
+                        li
+                            a(href='http://www.facebook.com',target='_blank')
+                                span.fa-stack.fa-lg
+                                    i.fa.fa-circle.fa-stack-2x
+                                    i.fa.fa-facebook.fa-stack-1x.fa-inverse
+                        li
+                            a(href='https://github.com/jrey1977/javirey',target='_blank')
+                                span.fa-stack.fa-lg
+                                    i.fa.fa-circle.fa-stack-2x
+                                    i.fa.fa-github.fa-stack-1x.fa-inverse
+                    p.copyright.text-muted Copyright &copy; Javier Rey 2015

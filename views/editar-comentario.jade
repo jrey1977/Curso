@@ -1,0 +1,26 @@
+extends layout-admin
+block content 
+		#page-wrapper.usuarios
+			.row
+				.col-lg-12
+					h1.page-header Editar comentario
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+						// /.panel-heading
+						.panel.panel-default
+							.panel-heading Modifica los campos
+							.panel-body
+								- var autor= comentario["autor"]
+								- var mensaje= comentario["mensaje"]
+								form#editar-comentario(name="editar-comentario", method="post")
+									.form-group
+										label Autor
+										input.form-control(type="text" name="autor" value="#{autor}",disabled="disabled")
+									.form-group
+										label Mensaje
+										textarea(name="mensaje") #{mensaje}
+									.form-group
+										button#comentUsr.btn.btn-success(type='submit') Grabar
+										a.btn.btn-danger(href='/admin/comentarios') Cancelar

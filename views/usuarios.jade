@@ -1,0 +1,40 @@
+extends layout-admin
+block content 
+		#page-wrapper.usuarios
+			.row
+				.col-lg-12
+					h1.page-header Gestionar usuarios
+				// /.col-lg-12
+			// /.row
+			.row
+				.col-lg-6
+					.panel.panel-default
+						.panel-heading
+							| Usuarios
+						// /.panel-heading
+						.panel-body
+							a.btn.btn-success#crearUsuario(href="/admin/crearUsuario") Crear usuario
+							.dataTable_wrapper
+								table#usuarios.table.table-striped.table-bordered.table-hover
+									thead
+										tr
+											th Nombre
+											th.celdaAdministrador Administrador
+											th.celdaEditar  Editar
+											th.celdaBorrar  Borrar
+									tbody
+										- each value, index in usuarios
+											- var idUsuario = value['id']
+											- var nombreUsuario = value['username']
+											- var administrador = value['administrador']
+											tr
+												td #{nombreUsuario}
+												td.celdaAdministrador #{administrador}
+												td.celdaEditar
+													a.btn.btn-warning(href="/admin/editarUsuario/#{idUsuario}") Editar
+												td.celdaBorrar
+													- if ( nombreUsuario == "admin" ){
+															a.btn.btn-danger.botonBorrar(href="/admin/borrarUsuario/#{idUsuario}",disabled="disabled") Borrar
+													- } else {
+															a.btn.btn-danger.botonBorrar(href="/admin/borrarUsuario/#{idUsuario}") Borrar
+													- }

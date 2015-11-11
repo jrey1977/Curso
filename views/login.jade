@@ -1,0 +1,18 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		block content 
+		.container.login#login
+			h1 Identifícate
+			form(role='form', action="/loginForm",method="post")
+				.form-group
+					input.form-control(type='text', name="username",placeholder='Username')
+				.form-group
+					input.form-control(type='password', name="password", placeholder='Password')
+				button.btn.btn-success(type='submit') Enviar
+				a.btn.btn-danger(href="/") Cancelar
+			

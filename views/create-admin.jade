@@ -1,0 +1,20 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/assets/css/style.min.css')
+	body
+		block content 
+		.container.login#login
+			h1 Registrar admin
+			form(role='form', action="/registro",method="post")
+				.form-group
+					input.form-control(type='text', name="username",placeholder='Usuario debe ser admin')
+				.form-group
+					input.form-control(type='password', name="password", placeholder='Password')
+				button.btn.btn-success(type='submit') Enviar
+				a.btn.btn-danger(href="/") Cancelar
+			.errorMessage
+				p Antes de nada, hay que registrar un administrador con nombre de usuario <b>admin</b>
+			

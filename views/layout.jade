@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible',content='IE=edge')
+    meta(name='viewport',content='width=device-width, initial-scale=1')
+    meta(name='description',content='Blog hecho con NodeJS')
+    meta(name='author',content='Javier Rey')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/assets/css/style.min.css')
+    <!-- Custom Fonts -->
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', type='text/css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic', type='text/css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800', type='text/css')
+  body
+      nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
+          .container-fluid
+              .navbar-header.page-scroll
+                  button.navbar-toggle(type='button',data-toggle='collapse',data-target='#bs-example-navbar-collapse-1')
+                      span.sr-only Toggle navigation
+                      span.icon-bar
+                      span.icon-bar
+                      span.icon-bar
+                  - if ( botonAdmin == "visible" ){
+                        a#botonAdmin.btn.btn-success(href="/admin") Administrador
+                  - } else {
+                        a#mostrarLogin.btn.btn-success(href="#") Iniciar sesión
+                        form#loginUser(action="/loginForm",role="form",method="post")
+                          input#cerrarForm.btn.btn-danger(type="button",value="X")
+                          input.form-control(type="text",name="username",placeholder="Username")
+                          input.form-control(type="password",name="password",placeholder="Password")
+                          input.btn.btn-success(type="submit",value="Iniciar sesión")
+                  - }
+              .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                  ul.nav.navbar-nav.navbar-right
+                      li
+                          a(href='/') Inicio
+                      li.dropdown.cerrado(data='#{menuCategorias}')
+                          a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-haspopup='true',aria-expanded='false') Categorias 
+                            span.caret
+                          ul.dropdown-menu
+                            - if ( !categorias ){
+                              - categorias = new Array()
+                            - }
+                            - each value, index in categorias
+                                - var nombreCategoria = value['nombre']
+                                - var urlCategoria = value['url']
+                                li
+                                  a(href='/noticias/#{urlCategoria}/') #{nombreCategoria}
+                      li
+                          a(href='/blog') Acerca del blog
+                      - if ( botonCerrarSesion == "visible" ){
+                        li
+                          a(href="/logout") Cerrar sesión
+                      - }
+                      - if ( botonRegistrarse == "visible" ){
+                        li
+                          a(href="/registro") Registrarse
+                      - }
+      block content  
+    script(src="/javascripts/jquery.min.js")
+    script(src="/javascripts/bootstrap.min.js")
+    script(src="/assets/js/clean-blog.js")
