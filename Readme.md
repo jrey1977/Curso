@@ -1,8 +1,13 @@
+## Descripción
+
+  Esta aplicación es el proyecto final de un curso de NodeJS. Es el típico gestor de contenidos que sigue los estándares de cualquier CRUD.
+
 ## Instalación
 
   Para empezar a correr la aplicación en local hay que tener instalado nodeJS y mongoDB. Debemos ejecutar y mantener abierta una conexión mongod para que se pueda crear una base de datos. Si deseamos correr la aplicación en un server, hay que modificar el parámetro "mongoose.connect" en el archivo "noticias.js" dentro de la carpeta "models".
 
   Una vez abierta la aplicación, se nos pedirá que creemos un admnistrador. Hasta que no se cree este administrador, no podremos empezar a usar el blog. Este admnistrador debe crearse con el nombre de usuario "admin" y el password que se desee. Si por algún motivo se borrara este usuario admin, nos saldrá de nuevo la pantalla de registro de administrador al intentar acceder al blog.
+
 
 ## Características del blog
 
@@ -29,11 +34,19 @@
   * "passport" para la autenticación de usuarios
 
 
-## Otras consideraciones
-
-  Esta aplicación se ha desarrollado utilizando "sass" y varias dependencias de grunt para facilitar la automatización de tareas y el minimizado de los archivos css y js. Los archivos minimizados que se incluyen en la aplicación están en la carpeta "assets". Aquellos que deseen realizar cambios en algún archivo css o js y no quieran o sepan trabajar con grunt o sass, deben cambiar la ruta a la versión descomprimida del archivo que corresponda.
-
-  Diseño hecho a partir de las siguientes plantillas:
+## Templates
 
   * "Clean Blog" para el frontend de las noticias : http://startbootstrap.com/template-overviews/clean-blog/
   * "SB Admin 2" para el panel de administrador: http://startbootstrap.com/template-overviews/sb-admin-2/
+
+
+## Links de interés
+
+  * Descarga esta y otras aplicaciones opne source en https://github.com/jrey1977
+  * Más info sobre el autor en su página web: http://www.javirey.es
+  * Puedes ver el blog en funcionamiento aqui: https://blog-jrey.herokuapp.com/
+
+
+## Otras consideraciones
+
+  Esta aplicación se ha desarrollado utilizando "sass" y varias dependencias de grunt para facilitar la automatización de tareas y el minimizado de los archivos css y js. Los archivos minimizados que se incluyen en la aplicación están en la carpeta "assets". Aquellos que deseen realizar cambios en algún archivo css o js y no quieran o sepan trabajar con grunt o sass, deben cambiar la ruta a la versión descomprimida del archivo que corresponda.
