@@ -4,9 +4,8 @@ Schema = mongoose.Schema;
 //mongoose.connect('mongodb://localhost/test');
 
 
-var mongooseUri = process.env.MONGOLAB_URI ||
-                  process.env.MONGOHQ_URL ||
-                  'mongodb://localhost/blog';
+var mongooseUri = process.env.MONGOLAB_URI
+
 var mongooseUri = uriUtil.formatMongoose(mongooseUri);
 
 
