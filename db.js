@@ -1,3 +1,5 @@
 module.exports = {
-  'url' : 'mongodb://localhost/bdAutenticacion'
+  'url' : process.env.MONGOLAB_URI ||
+          process.env.MONGOHQ_URL ||
+          'mongodb://localhost/blog';
 }
