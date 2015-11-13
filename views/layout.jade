@@ -24,7 +24,7 @@ html
                       span.icon-bar
                   - if ( botonAdmin == "visible" ){
                         a#botonAdmin.btn.btn-success(href="/admin") Administrador
-                  - } else {
+                  - } else if ( botonCerrarSesion != "visible" ){
                         a#mostrarLogin.btn.btn-success(href="#") Iniciar sesión
                         form#loginUser(action="/loginForm",role="form",method="post")
                           input#cerrarForm.btn.btn-danger(type="button",value="X")
