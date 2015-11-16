@@ -44,7 +44,7 @@
 
   * Descarga esta y otras aplicaciones opne source en https://github.com/jrey1977
   * Más info sobre el autor en su página web: http://www.javirey.es
-  * Puedes ver el blog en funcionamiento aqui: https://blog-jrey.herokuapp.com/
+  * Puedes ver el blog en funcionamiento aqui: http://blog-jrey.herokuapp.com/
 
 
 ## Otras consideraciones
