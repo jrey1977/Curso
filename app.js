@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/index');
+var routesNoticias = require('./routes/noticias');
+var routesAdmin = require('./routes/admin');
 var admin = require('./controllers/AdminController');
 var noticias = require('./controllers/NoticiasController');
 
@@ -37,6 +38,8 @@ app.use(passport.session());
 
 app.use('/', noticias);
 app.use('/admin', admin);
+app.use(routesNoticias);
+app.use(routesAdmin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
